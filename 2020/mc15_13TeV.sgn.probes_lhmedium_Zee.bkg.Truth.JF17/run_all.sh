@@ -1,0 +1,3 @@
+source run_mc15_13TeV_JF17_collector.sh
+source run_mc15_13TeV_Zee_collector.sh
+python merge_mc15_13TeV_Zee_and_JF17.py

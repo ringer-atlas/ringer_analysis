@@ -1,0 +1,3 @@
+source run_data16_13TeV_EGAM1_collector.sh
+source run_mc15_13TeV_JF17_collector.sh
+python merge_data16_13TeV_EGAM1_and_JF17.py
