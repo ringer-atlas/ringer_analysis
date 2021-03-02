@@ -76,8 +76,16 @@ ToolSvc += evt
 from TrigEgammaEmulationTool import Chain
 
 triggerList = [
-                #Chain( "EMU_e5_lhtight_nod0_noringer"  , "L1_EM3", "HLT_e5_lhtight_nod0_noringer"  ),
-                #Chain( "EMU_e5_lhtight_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhtight_nod0_ringer_v1" ),
+                # tight
+                Chain( "EMU_e5_lhtight_nod0_noringer"  , "L1_EM3", "HLT_e5_lhtight_nod0_noringer"  ),
+                Chain( "EMU_e5_lhtight_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhtight_nod0_ringer_v1" ),
+                # medium
+                Chain( "EMU_e5_lhmedium_nod0_noringer"  , "L1_EM3", "HLT_e5_lhmedium_nod0_noringer"  ),
+                Chain( "EMU_e5_lhmedium_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhmedium_nod0_ringer_v1" ),
+                # loose
+                Chain( "EMU_e5_lhloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhloose_nod0_noringer"  ),
+                Chain( "EMU_e5_lhloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhloose_nod0_ringer_v1" ),
+                # veryloose
                 Chain( "EMU_e5_lhvloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhvloose_nod0_noringer"  ),
                 Chain( "EMU_e5_lhvloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhvloose_nod0_ringer_v1" ),
               ]
@@ -93,36 +101,34 @@ for chain in triggerList:
 
 from QuadrantTools import QuadrantTool
 q_alg = QuadrantTool("Quadrant")
-#q_alg.add_quadrant( 'HLT_e5_lhtight_nod0_noringer'  , "EMU_e5_lhtight_nod0_noringer", # T2Calo
-#                    'HLT_e5_lhtight_nod0_ringer_v1' , "EMU_e5_lhtight_nod0_ringer_v1" # Ringer v1
-#                  ) 
 
-# vloose chain
-q_alg.add_quadrant( 'HLT_e5_lhvloose_nod0_noringer'  , "EMU_e5_lhvloose_nod0_noringer", # T2Calo
-                    'HLT_e5_lhvloose_nod0_ringer_v1' , "EMU_e5_lhvloose_nod0_ringer_v1" # Ringer v1
-                  ) 
+q_alg.add_quadrant( 
+                # tight
+                'HLT_e5_lhtight_nod0_noringer'  , "EMU_e5_lhtight_nod0_noringer", # T2Calo
+                'HLT_e5_lhtight_nod0_ringer_v1' , "EMU_e5_lhtight_nod0_ringer_v1" # Ringer v1
+                )
+q_alg.add_quadrant( 
+                # medium
+                'HLT_e5_lhmedium_nod0_noringer'  , "EMU_e5_lhmedium_nod0_noringer", # T2Calo
+                'HLT_e5_lhmedium_nod0_ringer_v1' , "EMU_e5_lhmedium_nod0_ringer_v1" # Ringer v1
+                )
+q_alg.add_quadrant(  
+                # loose
+                'HLT_e5_lhloose_nod0_noringer'  , "EMU_e5_lhloose_nod0_noringer", # T2Calo
+                'HLT_e5_lhloose_nod0_ringer_v1' , "EMU_e5_lhloose_nod0_ringer_v1" # Ringer v1
+                )
+q_alg.add_quadrant( 
+                # veryloose
+                'HLT_e5_lhvloose_nod0_noringer'  , "EMU_e5_lhvloose_nod0_noringer", # T2Calo
+                'HLT_e5_lhvloose_nod0_ringer_v1' , "EMU_e5_lhvloose_nod0_ringer_v1" # Ringer v1
+                ) 
+
 
 etlist = [3.0, 7.0, 10.0, 15.0]
-#etalist= [ 0.0, 0.6, 0.8, 1.15, 1.37, 1.52, 1.81, 2.01, 2.37, 2.47 ]
-etalist= [ 0.0, 0.8, 1.37, 1.54, 2.37, 2.47]
+etalist= [ 0.0, 0.6, 0.8, 1.15, 1.37, 1.52, 1.81, 2.01, 2.37, 2.47 ]
+#etalist= [ 0.0, 0.8, 1.37, 1.54, 2.37, 2.47]
 q_alg.setEtBinningValues(etlist)
 q_alg.setEtaBinningValues(etalist)
 ToolSvc += q_alg
 
-#from ImpactTools import ImpactTool
-#i_alg = ImpactTool("Impact", dataframe = DataframeEnum.Electron_v1)
-#i_alg.add_selection(  'HLT_e5_lhtight_nod0_noringer'  , "EMU_e5_lhtight_nod0_noringer", # T2Calo
-#                      'HLT_e5_lhtight_nod0_ringer_v1' , "EMU_e5_lhtight_nod0_ringer_v1", # Ringer v1
-#                    ) 
-
-#etlist = [3.0, 7.0, 10.0, 15.0]
-#etalist= [ 0.0, 0.6, 0.8, 1.15, 1.37, 1.52, 1.81, 2.01, 2.37, 2.47 ]
-#etalist= [ 0.0, 0.8, 1.37, 1.54, 2.37, 2.47]
-#i_alg.setEtBinningValues(etlist)
-#i_alg.setEtaBinningValues(etalist)
-#ToolSvc += i_alg
-
-
 acc.run(args.nov)
-
-
