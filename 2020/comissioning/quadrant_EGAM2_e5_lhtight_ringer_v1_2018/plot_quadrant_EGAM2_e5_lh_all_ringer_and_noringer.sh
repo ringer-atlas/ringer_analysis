@@ -1,0 +1,1 @@
+python3 plot_quadrant_EGAM2_e5_lh_all_ringer_and_noringer.py  -i egam2/egam2.root
