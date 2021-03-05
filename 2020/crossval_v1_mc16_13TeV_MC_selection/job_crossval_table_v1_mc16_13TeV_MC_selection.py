@@ -37,6 +37,7 @@ base_path     = args.inputFiles
 tunes_path    = args.tunedFiles
 analysis_path = args.outputPath
 
+
 print('Variables path defined \n base: %s \n tunes: %s \n analysis: %s' %(base_path,
                                                                           tunes_path,
                                                                           analysis_path))
@@ -114,12 +115,12 @@ kt.fill(tunes_path, args.modelTag)
 
 
 table = kt.table()
-kt.to_csv(args.modelTag + '_all_models_2.csv')
+kt.to_csv(args.modelTag + '_all_models.csv')
 
 table.head(5)
 
 
-best_inits = kt.filter_inits("max_sp_op")
+best_inits = kt.filter_inits("max_sp_val")
 best_inits.head()
 n_min, n_max = 2, 5
 
@@ -139,7 +140,7 @@ best_inits = best_inits.loc[(best_inits.train_tag== args.modelTag + '.mlp2')  |
 for op in ['tight','medium','loose']:
   kt.dump_beamer_table( best_inits        = best_inits,
                         operation_points  = [op], 
-                        output            = args.modelTag + '_2' + op, 
+                        output            = args.modelTag +'_'+ op, 
                         title             = op + ' Tunings', 
                          )
 
