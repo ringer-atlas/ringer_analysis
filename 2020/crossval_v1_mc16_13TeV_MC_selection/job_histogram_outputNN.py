@@ -34,7 +34,7 @@ def plotSingleHistogram(et, eta, model_idx, df, data, sort):
 
 	sgnPredict = tunedModel.predict(norm1(sgnRings))
 	bkgPredict = tunedModel.predict(norm1(bkgRings))
-	from ROOT import TH1F, TCanvas, TPaveText, kBlue, kRed, kGreen, gPad, gStyle, TLine, TLegend
+	from ROOT import TH1F, TCanvas, TPaveText, kBlue, kRed, kGreen, gPad, gStyle, TLine, TLegend, THStack
 
 	sgnHist = TH1F('signal','signal',100,-1,1)
 	bkgHist = TH1F('background','background',100,-1,1)
@@ -52,20 +52,24 @@ def plotSingleHistogram(et, eta, model_idx, df, data, sort):
 	bkgHist.SetFillStyle(3444)
 	bkgHist.SetLineColor(kRed)
 	c = TCanvas('c','c',500,500)
-	sgnHist.GetXaxis().SetTitle('NN Output')
-	sgnHist.GetYaxis().SetTitle("Counts")
+
 	etmin = etbins_values[et]
 	etmax = etbins_values[et+1]
 	etamin = etabins_values[eta]
 	etamax = etabins_values[eta+1]
+	hstack = THStack('hs','')
+	hstack.Add(sgnHist)
+	hstack.Add(bkgHist)
+	hstack.Draw('nostack')
+	hstack.GetXaxis().SetTitle('NN Output')
+	hstack.GetYaxis().SetTitle("Counts")
+	
 	if et < 4:
-		sgnHist.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " + str(etmin) + "< E_{T} < " + str(etmax) + " GeV")
+		hstack.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " + str(etmin) + "< E_{T} < " + str(etmax) + " GeV")
 	else:
-		sgnHist.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " " E_{T} > " + str(etmin)   + " GeV")
-	sgnHist.Draw()
-	bkgHist.Draw('sames')
+		hstack.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " " E_{T} > " + str(etmin)   + " GeV")
 	c.Update()
-	text = TPaveText(0.22,sgnHist.GetMaximum(),0.9,sgnHist.GetMaximum() - 0.1*sgnHist.GetMaximum())
+	text = TPaveText(0.22,hstack.GetMaximum(),0.9,hstack.GetMaximum() - 0.15*hstack.GetMaximum())
 	threshold = tuned['history']['reference']['medium_cutbased']['threshold_val']
 	pd_op = tuned['history']['reference']['medium_cutbased']['pd_val'][0]*100
 	fa_op = tuned['history']['reference']['medium_cutbased']['fa_val'][0]*100
@@ -73,6 +77,7 @@ def plotSingleHistogram(et, eta, model_idx, df, data, sort):
 	text.AddText("Probability Detection: " + str(round(pd_op,2)) + "%")
 	text.AddText("False Alarm: " + str(round(fa_op,2)) + "%")
 	text.AddText("SP index: " + str(round(sp_op,2)) + "%")
+	text.AddText("Threshold: " + str(round(threshold,2)))
 	text.SetTextSize(0.02)
 	legend = TLegend(0.22,0.71,0.48,0.8);
 	legend.AddEntry(sgnHist,"Signal Histogram","f");

@@ -121,7 +121,7 @@ for et in range(5):
     if et < 4:
       plt.title(str(etamin) + "<" + r'$\eta $' +"<" + str(etamax) + " -  " + str(etmin) + "< " + r'$E_T $'+ " < " + str(etmax) + " GeV")
     else:
-      plt.title(str(etamin) + "<" + r'$\eta $' +"<" + str(etamax) + " -  "  + r'$E_T $'+ " > " + str(etmax) + " GeV")
+      plt.title(str(etamin) + "<" + r'$\eta $' +"<" + str(etamax) + " -  "  + r'$E_T $'+ " > " + str(etmin) + " GeV")
 
 
     plt.savefig('roc_curve_et_'+str(et) + '_eta'+str(eta) + '_mlp5_fa_threshold.png')
