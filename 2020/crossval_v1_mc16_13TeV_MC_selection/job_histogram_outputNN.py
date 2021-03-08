@@ -65,9 +65,9 @@ def plotSingleHistogram(et, eta, model_idx, df, data, sort):
 	hstack.GetYaxis().SetTitle("Counts")
 	
 	if et < 4:
-		hstack.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " + str(etmin) + "< E_{T} < " + str(etmax) + " GeV")
+		hstack.SetTitle("Sort " +str(sort-1) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " + str(etmin) + "< E_{T} < " + str(etmax) + " GeV")
 	else:
-		hstack.SetTitle("Sort " +str(sort) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " " E_{T} > " + str(etmin)   + " GeV")
+		hstack.SetTitle("Sort " +str(sort-1) +" Histogram - " + str(etamin) + " < #eta < " + str(etamax) + " -  " " E_{T} > " + str(etmin)   + " GeV")
 	c.Update()
 	text = TPaveText(0.22,hstack.GetMaximum(),0.9,hstack.GetMaximum() - 0.15*hstack.GetMaximum())
 	threshold = tuned['history']['reference']['medium_cutbased']['threshold_val']
