@@ -37,7 +37,7 @@ args = parser.parse_args()
 
 acc = EventATLAS(  "EventATLASLoop",
                   inputFiles = args.inputFiles,
-                  treePath= '*/HLT/PhysVal/Egamma/fakes' if args.doFakes else '*/HLT/PhysVal/Egamma/photons',
+                  treePath= '*/HLT/PhysVal/Egamma/photons',
                   dataframe = DataframeEnum.Photon_v1,
                   outputFile = args.outputFile,
                   # outputFile = 'dummy.root',

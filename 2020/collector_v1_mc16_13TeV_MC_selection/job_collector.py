@@ -37,10 +37,9 @@ args = parser.parse_args()
 
 acc = EventATLAS(  "EventATLASLoop",
                   inputFiles = args.inputFiles,
-                  treePath= '*/HLT/PhysVal/Egamma/fakes' if args.doFakes else '*/HLT/PhysVal/Egamma/photons',
+                  treePath= '*/HLT/PhysVal/Egamma/photons',
                   dataframe = DataframeEnum.Photon_v1,
                   outputFile = args.outputFile,
-                  # outputFile = 'dummy.root',
                   level = LoggingLevel.INFO,
                 )
 
@@ -49,15 +48,15 @@ from EventSelectionTool import EventSelection, SelectionType, EtCutType
 evt = EventSelection('EventSelection')
 evt.setCutValue( EtCutType.L2CaloAbove , 15)
 if args.doZrad:
-    pidname = 'mc_isPhoton'
+  evt.setCutValue (SelectionType.SelectionPhoton)
 elif args.doFakes:
-    pidname = '!mc_isPhoton'
+  evt.setCutValue (SelectionType.SelectionJet)
 else:
-    pidname = 'mc_isPhoton'
+  evt.setCutValue (SelectionType.SelectionPhoton)
 
 ToolSvc += evt
 
-evt.setCutValue (SelectionType.SelectionPID, pidname)
+
 
 from TrigEgammaEmulationTool import installTrigEgammaL2PhotonCaloSelectors
 installTrigEgammaL2PhotonCaloSelectors()
