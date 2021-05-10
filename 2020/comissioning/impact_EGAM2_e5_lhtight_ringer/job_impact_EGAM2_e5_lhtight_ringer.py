@@ -61,6 +61,7 @@ else:
   #pidname = 'MediumLLH_DataDriven_Rel21_Run2_2018'
   #pidname = 'el_lhtight'
   pidname = 'el_lhmedium'
+  #pidname = 'el_lhvloose'
 
 
 evt.setCutValue( SelectionType.SelectionPID, pidname ) 
@@ -82,17 +83,17 @@ from TrigEgammaEmulationTool import Chain
 
 triggerList = [
                 # tight
-                Chain( "EMU_e5_lhtight_nod0_noringer"  , "L1_EM3", "HLT_e5_lhtight_nod0_noringer"  ),
-                Chain( "EMU_e5_lhtight_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhtight_nod0_ringer_v1" ),
+                #Chain( "EMU_e5_lhtight_nod0_noringer"  , "L1_EM3", "HLT_e5_lhtight_nod0_noringer"  ),
+                #Chain( "EMU_e5_lhtight_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhtight_nod0_ringer_v1" ),
                 # medium
                 Chain( "EMU_e5_lhmedium_nod0_noringer"  , "L1_EM3", "HLT_e5_lhmedium_nod0_noringer"  ),
                 Chain( "EMU_e5_lhmedium_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhmedium_nod0_ringer_v1" ),
                 # loose
-                Chain( "EMU_e5_lhloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhloose_nod0_noringer"  ),
-                Chain( "EMU_e5_lhloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhloose_nod0_ringer_v1" ),
+                #Chain( "EMU_e5_lhloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhloose_nod0_noringer"  ),
+                #Chain( "EMU_e5_lhloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhloose_nod0_ringer_v1" ),
                 # veryloose
-                Chain( "EMU_e5_lhvloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhvloose_nod0_noringer"  ),
-                Chain( "EMU_e5_lhvloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhvloose_nod0_ringer_v1" ),
+                #Chain( "EMU_e5_lhvloose_nod0_noringer"  , "L1_EM3", "HLT_e5_lhvloose_nod0_noringer"  ),
+                #Chain( "EMU_e5_lhvloose_nod0_ringer_v1" , "L1_EM3", "HLT_e5_lhvloose_nod0_ringer_v1" ),
               ]
 
 # Add all chains into the emulator
@@ -106,26 +107,26 @@ for chain in triggerList:
 
 from ImpactTools import ImpactTool
 alg = ImpactTool("Impact", dataframe = DataframeEnum.Electron_v1)
-alg.add_selection( 
-                  # tight
-                  'HLT_e5_lhtight_nod0_noringer'  , "EMU_e5_lhtight_nod0_noringer", # T2Calo
-                  'HLT_e5_lhtight_nod0_ringer_v1' , "EMU_e5_lhtight_nod0_ringer_v1" # Ringer v1
-                  )
+#alg.add_selection( 
+#                  # tight
+#                  'HLT_e5_lhtight_nod0_noringer'  , "EMU_e5_lhtight_nod0_noringer", # T2Calo
+#                  'HLT_e5_lhtight_nod0_ringer_v1' , "EMU_e5_lhtight_nod0_ringer_v1" # Ringer v1
+#                  )
 alg.add_selection( 
                   # medium
                   'HLT_e5_lhmedium_nod0_noringer'  , "EMU_e5_lhmedium_nod0_noringer", # T2Calo
                   'HLT_e5_lhmedium_nod0_ringer_v1' , "EMU_e5_lhmedium_nod0_ringer_v1" # Ringer v1
                   )
-alg.add_selection(  
-                  # loose
-                  'HLT_e5_lhloose_nod0_noringer'  , "EMU_e5_lhloose_nod0_noringer", # T2Calo
-                  'HLT_e5_lhloose_nod0_ringer_v1' , "EMU_e5_lhloose_nod0_ringer_v1" # Ringer v1
-                  )
-alg.add_selection( 
-                  # veryloose
-                  'HLT_e5_lhvloose_nod0_noringer'  , "EMU_e5_lhvloose_nod0_noringer", # T2Calo
-                  'HLT_e5_lhvloose_nod0_ringer_v1' , "EMU_e5_lhvloose_nod0_ringer_v1" # Ringer v1
-                  ) 
+#alg.add_selection(  
+#                  # loose
+#                  'HLT_e5_lhloose_nod0_noringer'  , "EMU_e5_lhloose_nod0_noringer", # T2Calo
+#                  'HLT_e5_lhloose_nod0_ringer_v1' , "EMU_e5_lhloose_nod0_ringer_v1" # Ringer v1
+#                  )
+#alg.add_selection( 
+#                  # veryloose
+#                  'HLT_e5_lhvloose_nod0_noringer'  , "EMU_e5_lhvloose_nod0_noringer", # T2Calo
+#                  'HLT_e5_lhvloose_nod0_ringer_v1' , "EMU_e5_lhvloose_nod0_ringer_v1" # Ringer v1
+#                  ) 
 
 
 etlist = [3.0, 7.0, 10.0, 15.0]
