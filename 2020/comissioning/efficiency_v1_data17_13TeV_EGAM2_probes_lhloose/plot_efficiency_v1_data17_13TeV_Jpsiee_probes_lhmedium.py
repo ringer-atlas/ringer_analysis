@@ -1,6 +1,8 @@
 from Gaugi.messenger import LoggingLevel, Logger
 from Gaugi.storage import restoreStoreGate
-from EfficiencyTools import PlotProfiles, GetProfile
+#from EfficiencyTools import PlotProfiles, GetProfile
+from EfficiencyTools import GetProfile
+from old_plot_profiles import PlotProfiles
 
 import ROOT
 
@@ -31,58 +33,62 @@ def get( sg, path, histname, resize=None ):
 
 
 
-inputFile = 'EGAM7/egam7.root'
+inputFile = 'data17_before_ts1_egam7_lhloose/data17_before_ts1_egam7_lhloose.root'
 basepath = 'Event/EfficiencyTool'
 
 sg =  restoreStoreGate( inputFile )
 
 chain_dict_config = {
-  #'HLT_e5_lhvloose_nod0' : {
-  #                          'triggers' : ["EMU_e5_lhvloose_nod0_noringer", "EMU_e5_lhvloose_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhvloose_nod0_eff',
-  #                          },
-  #'HLT_e5_lhloose_nod0'  : {
-  #                          'triggers' : ["EMU_e5_lhloose_nod0_noringer", "EMU_e5_lhloose_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhloose_nod0_eff',
-  #                          },
-  #'HLT_e5_lhmedium_nod0' : {
-  #                          'triggers' : ["EMU_e5_lhmedium_nod0_noringer", "EMU_e5_lhmedium_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhmedium_nod0_eff',
-  #                          },
-  #'HLT_e5_lhtight_nod0'  : {
-  #                          'triggers' : ["EMU_e5_lhtight_nod0_noringer", "EMU_e5_lhtight_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhtight_nod0_eff',
-  #                          },
+  'HLT_e7_lhvloose_nod0' : {
+                            'triggers' : ["EMU_e7_lhvloose_nod0_noringer", "EMU_e7_lhvloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhvloose_nod0_eff',
+                            },
+  'HLT_e9_lhvloose_nod0' : {
+                            'triggers' : ["EMU_e9_lhvloose_nod0_noringer", "EMU_e9_lhvloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhvloose_nod0_eff',
+                            },
+  'HLT_e12_lhvloose_nod0' : {
+                            'triggers' : ["EMU_e12_lhvloose_nod0_noringer", "EMU_e12_lhvloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhvloose_nod0_eff',
+                            },
+  'HLT_e5_lhvloose_nod0' : {
+                            'triggers' : ["EMU_e5_lhvloose_nod0_noringer", "EMU_e5_lhvloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhvloose_nod0_eff',
+                            },
+  'HLT_e5_lhloose_nod0'  : {
+                            'triggers' : ["EMU_e5_lhloose_nod0_noringer", "EMU_e5_lhloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhloose_nod0_eff',
+                            },
+  'HLT_e5_lhmedium_nod0' : {
+                            'triggers' : ["EMU_e5_lhmedium_nod0_noringer", "EMU_e5_lhmedium_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhmedium_nod0_eff',
+                            },
+  'HLT_e5_lhtight_nod0'  : {
+                            'triggers' : ["EMU_e5_lhtight_nod0_noringer", "EMU_e5_lhtight_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e5_lhtight_nod0_eff',
+                            },
 
   'HLT_e7_lhmedium_nod0' : {
                             'triggers' : ["EMU_e7_lhmedium_nod0_noringer", "EMU_e7_lhmedium_nod0_ringer_v1",],
                             'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e7_lhmedium_nod0_eff',
                             },
-  #'HLT_e9_lhloose_nod0'  : {
-  #                          'triggers' : ["EMU_e9_lhloose_nod0_noringer", "EMU_e9_lhloose_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e9_lhloose_nod0_eff',
-  #                          },
+  'HLT_e9_lhloose_nod0'  : {
+                            'triggers' : ["EMU_e9_lhloose_nod0_noringer", "EMU_e9_lhloose_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e9_lhloose_nod0_eff',
+                            },
   'HLT_e9_lhmedium_nod0' : {
                             'triggers' : ["EMU_e9_lhmedium_nod0_noringer", "EMU_e9_lhmedium_nod0_ringer_v1",],
                             'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e9_lhmedium_nod0_eff',
                             },
-  #'HLT_e9_lhtight_nod0'  : {
-  #                          'triggers' : ["EMU_e9_lhtight_nod0_noringer", "EMU_e9_lhtight_nod0_ringer_v1",],
-  #                          'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e9_lhtight_nod0_eff',
-  #                          }, 
+  'HLT_e9_lhtight_nod0'  : {
+                            'triggers' : ["EMU_e9_lhtight_nod0_noringer", "EMU_e9_lhtight_nod0_ringer_v1",],
+                            'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e9_lhtight_nod0_eff',
+                            }, 
   'HLT_e12_lhmedium_nod0' : {
                             'triggers' : ["EMU_e12_lhmedium_nod0_noringer", "EMU_e12_lhmedium_nod0_ringer_v1",],
                             'plotname' : 'efficiency_v1_data18_13TeV_%s_%s_e12_lhmedium_nod0_eff',
                             },
 }
-
-
-#triggers = [ 
-#             "EMU_e5_lhtight_nod0_noringer",
-#             "EMU_e5_lhtight_nod0_ringer_v1",
-#             #"EMU_e5_lhloose_nod0_ringer_v1_sameCutBased",
-#             #"EMU_e5_lhloose_nod0_ringer_v1_athena",
-#             ]
 
 
 for ichain in chain_dict_config.keys():
@@ -98,6 +104,10 @@ for ichain in chain_dict_config.keys():
     
     legends = ['noringer', 'ringer v1']#, 'ringer old v1', 'ringer old v1 2']
 
+
+  for trigger in triggers:
+    plot_table( sg, mainLogger, trigger, basepath )
+'''
     PlotProfiles( eff_et, legends=legends,runLabel='data18 13TeV', outname='%s_et.pdf' %(plotname), theseColors=theseColors,
                   extraText1=ichain,doRatioCanvas=False, legendX1=.65, xlabel='E_{T}', rlabel='Trigger/Ref.',ylabel='Trigger Efficiency')
 
@@ -109,8 +119,5 @@ for ichain in chain_dict_config.keys():
 
     PlotProfiles( eff_mu, legends=legends,runLabel='data18 13TeV', outname='%s_mu.pdf' %(plotname),theseColors=theseColors,
                   extraText1=ichain, doRatioCanvas=False, legendX1=.65, xlabel='<#mu>', rlabel='Trigger/Ref.',ylabel='Trigger Efficiency')
+'''
 
-
-
-  for trigger in triggers:
-    plot_table( sg, mainLogger, trigger, basepath )
