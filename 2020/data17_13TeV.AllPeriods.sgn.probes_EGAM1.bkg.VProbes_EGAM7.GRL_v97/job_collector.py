@@ -93,16 +93,16 @@ else:
   pidname = 'el_lhmedium'
   #pidname = 'el_lhtight'
 
-print( pidname )
+#print( pidname )
 
 
 if args.doJpsi:
-    evt.setCutValue( SelectionType.SelectionPID, pidname )
+    #evt.setCutValue( SelectionType.SelectionPID, pidname )
     evt.setCutValue( EtCutType.L2CaloAbove, 4 )
     evt.setCutValue( EtCutType.L2CaloBelow, 15 )
     evt.setCutValue( EtCutType.OfflineAbove, 2 )
 else:
-    evt.setCutValue( SelectionType.SelectionPID, pidname )
+    #evt.setCutValue( SelectionType.SelectionPID, pidname )
     evt.setCutValue( EtCutType.L2CaloAbove , 15)
 
 ToolSvc += evt
