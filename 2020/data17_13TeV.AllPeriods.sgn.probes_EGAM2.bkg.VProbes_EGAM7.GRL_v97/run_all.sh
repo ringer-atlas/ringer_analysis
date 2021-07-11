@@ -1,0 +1,3 @@
+source run_data17_13TeV_Jpsiee_EGAM2_collector.sh
+source run_data17_13TeV_Jpsiee_EGAM7_collector.sh
+python merge_data17_13TeV_Jpsiee_EGAM2_and_EGAM7.py
